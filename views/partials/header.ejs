@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hiking Around the World</title>
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/blog.css">
+        <link rel="stylesheet" href="styles/weather.css">
+    </head>
+
+    <body>
+        
+        <!-- nav bar -->
+        <nav id="nav-bar">
+            <div id="nav-content">
+
+                <!-- left side of nav bar -->
+                <div id="nav-left">
+                    <img id="mount-pic" src="/images/mountain.png" alt="Mountain Logo"/>
+                    <h1 id="web-title">Hiking Around The World</h1>
+
+                    <form action="/" method="POST">
+                        <button class="nav-button" type="submit">Blog</button>
+                    </form>
+
+                    <form action="/weather" method="POST">
+                        <button class="nav-button" type="submit">Weather</button>
+                    </form>
+                </div>
+
+                <!-- right side of nav bar -->
+                <% if(userId === null) { %>
+                <div id="nav-right">
+                    <form action="/signin">
+                        <button class="nav-button" type="submit">Sign-in</button>
+                    </form>
+                </div>
+                <% } else { %>
+                <div id="nav-right"></div>
+                    <form action="/manage-account">
+                        <button class="nav-button" type="submit"> Hello <%= userId %></button>
+                    </form>
+                <% } %>
+                </div>
+
+            </div>
+        </nav>
+
+    </body>
+</html>

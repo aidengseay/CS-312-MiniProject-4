@@ -1,0 +1,71 @@
+/* filter posts */
+
+#filter-prompt{
+    display: inline;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.filter-category{
+    width: 50%;
+    margin: 10px;
+    padding: 5px;
+    background-color: #fefae0;
+}
+
+/* viewing posts */
+
+#blog-post{
+    text-align: left;
+}
+
+#blog-title,#edit-title{
+    font-size: 2.5rem;
+    margin: 10px 10px;
+}
+
+#blog-category{
+    font-size: 1.5rem;
+    margin: 10px 10px;
+}
+
+#blog-author{
+    margin: 10px 10px;
+    font-size: 1.5rem;
+}
+
+#blog-content{
+    margin: 10px 10px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+#post-buttons{
+    text-align: center;
+}
+
+#edit-form{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#delete-form{
+    display: inline-block;
+}
+
+/* creating/editing posts */
+
+#new-post-title{
+    display: inline;
+}
+
+.write-prompt{
+    width: 90%;
+    margin: 10px;
+    padding: 5px;
+    background-color: #fefae0;
+}
+
+.submit-btn{
+    margin: 10px;
+}

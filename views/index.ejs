@@ -1,0 +1,91 @@
+<%- include("partials/header.ejs", {userId}) %>
+
+<body>
+
+    <!-- filter tool -->
+    <form class="small-tan-box" action="/filter" method="POST">
+        <p id="filter-prompt">Filter Posts</p>
+        <br>
+        <select class="filter-category" name="category" onchange="this.form.submit()">
+            <option value="None" <%= categoryFilter === "None" ? "selected" : "" %>>None</option>
+            <option value="Trails" <%= categoryFilter === "Trails" ? "selected" : "" %>>Trails</option>
+            <option value="Gear" <%= categoryFilter === "Gear" ? "selected" : "" %>>Gear</option>
+            <option value="Skills" <%= categoryFilter === "Skills" ? "selected" : "" %>>Skills</option>
+            <option value="Nature" <%= categoryFilter === "Nature" ? "selected" : "" %>>Nature</option>
+        </select>
+    </form>
+
+    <!-- blog contents -->
+    <% let visible = false; %>
+    <% for(let i = 0; i < blogPosts.length; i++) { %>
+
+        <% if(categoryFilter === "None" || categoryFilter === blogPosts[i].category) { %>
+
+        <div class="large-white-box" id="blog-post">
+            <h4 id="blog-title"><%= blogPosts[i].title %></h4>
+            <h5 id="blog-category">Category: <%= blogPosts[i].category %></h5>
+            <p id="blog-author">Created by <%= blogPosts[i].creator_name %> on <%= blogPosts[i].date_created %></p>
+            <hr>
+            <p id="blog-content"><%= blogPosts[i].body %></p>
+
+            <!-- track the username and determine if buttons appear -->
+             <% if(userId == blogPosts[i].creator_user_id) {%>
+
+            <div id="post-buttons">
+                <form id="edit-form" action="/edit" method="POST">        
+                    <input type="hidden" name="blogId" value="<%= blogPosts[i].blog_id %>">
+                    <button id="edit-btn" class="button" type="submit">Edit</button>
+                </form>
+                <form id="del-form" action="/delete" method="POST">
+                    <input type="hidden" name="blogId" value="<%= blogPosts[i].blog_id %>">
+                    <button id="del-btn" class="button" type="submit">Delete</button>
+                </form>
+            </div>
+
+            <% } %>
+
+        </div>
+
+        <% visible = true; %>
+
+        <% } %>
+
+    <% } %>
+
+    <% if(!visible) { %>
+
+        <h4 class="small-white-box">No posts made yet</h4>
+
+    <% } %>
+
+    <!-- make a new post -->
+    <% if(userId != null) {%>
+
+    <div class="large-tan-box">
+        <h3 id="new-post-title">Create a new post!</h3>
+        <form action="/new" method="POST">
+            <input type="text" class="large-write-prompt" name="title" placeholder="Blog Title" required/>
+
+            <select class="large-write-prompt" name="category" required>
+                <option selected disabled value> -- Select a Category -- </option>
+                <option value="Trails">Trails</option>
+                <option value="Gear">Gear</option>
+                <option value="Skills">Skills</option>
+                <option value="Nature">Nature</option>
+            </select>
+
+            <textarea class="large-write-prompt" name="content" placeholder="Blog Content" rows=10 cols=60 required></textarea>
+            <br>
+            <input class="submit-btn button" type="submit" value="Submit">
+        </form>
+    </div>
+
+    <% } else { %>
+
+        <div class="small-tan-box">
+            <h1 class="small-prompt">Sign-in to make a post</h1>
+
+        </div>
+
+    <% } %>
+</body>

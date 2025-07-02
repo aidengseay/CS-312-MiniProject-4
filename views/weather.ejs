@@ -1,0 +1,39 @@
+<%- include("partials/header.ejs", {userId}) %>
+
+<body>
+
+    <!-- getting user input -->
+    <form class="small-tan-box" action="/weather" method="POST">
+        <h4 class="small-prompt">Enter Location Coordinates</h4>
+        <br>
+        <input class="small-write-prompt" type="text" name="lat" placeholder="Latitude" required/>
+        <input class="small-write-prompt" type="text" name="lon" placeholder="Longitude" required/>
+        <br>
+        <button class="button" type="submit">Check weather</button>
+    </form>
+
+    <!-- display weather results -->
+    <% if(locals.temp) { %>
+
+        <div class="small-white-box">
+            <h2>Current Weather</h2>
+            <p>Temperature: <%= temp %>°F</p>
+            <p>Low Temp: <%= tempMin %>°F</p>
+            <p>High Temp: <%= tempMax %>°F</p>
+            <p>Humidity: <%= humidity %>%</p>
+            <p>Conditions: <%= weatherMain %> ( <%= weatherDescription %> )</p>
+            <img id="weather-img" src="https://openweathermap.org/img/wn/<%= weatherIcon %>@2x.png" alt="weather icon" /> 
+        </div>
+
+    <% } %>
+
+    <!-- display results if necessary -->
+    <% if(locals.error) { %>
+
+        <div class="small-white-box">
+            <h2 class="small-prompt">Enter Valid Location Coordinates</h4>
+        </div>
+
+    <% } %>
+
+</body>

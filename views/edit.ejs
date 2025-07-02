@@ -1,0 +1,25 @@
+<%- include("partials/header.ejs", {userId}) %>
+
+<body>
+
+    <!-- editing form -->
+    <div class="large-tan-box">
+        <h3 id="edit-title">Editing <%= blogPost.title %></h3>
+        <form action="/update" method="POST">
+            <input type="text" class="large-write-prompt" name="title" placeholder="Blog title" required value="<%= blogPost.title %>"/>
+
+            <select class="large-write-prompt" name="category" required>
+                <option value="Trails" <%= blogPost.category === "Trails" ? "selected" : "" %>>Trails</option>
+                <option value="Gear" <%= blogPost.category === "Gear" ? "selected" : "" %>>Gear</option>
+                <option value="Skills" <%= blogPost.category === "Skills" ? "selected" : "" %>>Skills</option>
+                <option value="Nature" <%= blogPost.category === "Nature" ? "selected" : "" %>>Nature</option>
+            </select>
+
+            <textarea class="large-write-prompt" name="content" rows=10 cols=60 placeholder="Blog Content" required><%= blogPost.body %></textarea>
+            <br>
+            <input type="hidden" name="blogId" value="<%= blogPost.blog_id %>">
+            <input class="submit-btn button" type="submit" value="Update">
+        </form>
+    </div>
+    
+</body>
